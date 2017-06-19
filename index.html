@@ -1,0 +1,70 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Emcien Prediction App</title>
+    <meta name="description" content="Sample Emcien Prediction App">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/yeti/bootstrap.min.css"
+    >
+
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <div class="container">
+      <br />
+      <br />
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <div class="row">
+                <div class="col-sm-3">
+                  <span>Emcien Prediction Widget</span>
+                </div>
+                <div class="col-sm-9">
+                  <form
+                          class="form-inline"
+                          id="config-form"
+                          onsubmit="window.Emcien.Prediction.submitConfigForm(); return false;"
+                  >
+                    <input class="form-control" name="instanceUrl" type="text" placeholder="App URL" />
+                    <input class="form-control" name="reportId" type="text" placeholder="Rules ID" />
+                    <input class="form-control" name="apiKey" type="text" placeholder="API Auth Token" />
+                    <button class="btn btn-default" type="submit">Search</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="panel-body">
+              <h2 id="outcome-heading">What Drives:</h2>
+              <select class='form-control' id='outcome-select' onchange="window.Emcien.Prediction.changeOutcome(this)">
+              </select>
+
+              <hr />
+
+              <table id="data-table" class="table table-striped table-bordered">
+                <thead>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="js/emcienApi.js"></script>
+    <script src="js/emcienConfigFormHelpers.js"></script>
+    <script src="js/emcienDataTableHelpers.js"></script>
+    <script src="js/emcienOutcomeOptionsHelpers.js"></script>
+    <script src="js/emcienPrediction.js"></script>
+  </body>
+</html>

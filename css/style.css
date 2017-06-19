@@ -1,0 +1,9 @@
+#outcome-heading {
+    display: inline;
+    margin-right: 20px;
+}
+
+#outcome-select {
+    display: inline;
+    width: 250px;
+}
