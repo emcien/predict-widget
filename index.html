@@ -30,7 +30,7 @@
                   <form
                           class="form-inline"
                           id="config-form"
-                          onsubmit="window.Emcien.Prediction.submitConfigForm(); return false;"
+                          onsubmit="Emcien.Prediction.handleConfigFormSubmit(); return false;"
                   >
                     <input class="form-control" name="instanceUrl" type="text" placeholder="App URL" />
                     <input class="form-control" name="reportId" type="text" placeholder="Rules ID" />
@@ -42,7 +42,7 @@
             </div>
             <div class="panel-body">
               <h2 id="outcome-heading">What Drives:</h2>
-              <select class='form-control' id='outcome-select' onchange="window.Emcien.Prediction.changeOutcome(this)">
+              <select class='form-control' id='outcome-select' onchange="Emcien.Prediction.handleOutcomeChange(this)">
               </select>
 
               <hr />

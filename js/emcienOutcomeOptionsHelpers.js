@@ -1,7 +1,18 @@
 window.Emcien = window.Emcien || {};
 window.Emcien.OutcomeOptionsHelpers = (function () {
+  /**
+   * jQuery Selector for the Outcomes dropdown
+   * @type {jQuery}
+   * @private
+   */
   var _outcomeSelect = $('#outcome-select');
 
+  /**
+   * Takes data about a specific item and returns a select option
+   * @param item Item data for a specific item
+   * @returns {HTMLElement} HTML element for a specific option
+   * @private
+   */
   var _buildOutcomeOption = function (item) {
     return $('<option>', {
       value: item.id,
@@ -10,6 +21,10 @@ window.Emcien.OutcomeOptionsHelpers = (function () {
   };
 
   return {
+    /**
+     * Updates the Outcomes dropdown with new values
+     * @param outcomes
+     */
     setOutcomeOptions: function (outcomes) {
       _outcomeSelect.append('<option value="" disabled selected hidden>Select One</option>');
       $.each(outcomes, function (i, item) {
@@ -17,6 +32,10 @@ window.Emcien.OutcomeOptionsHelpers = (function () {
         _outcomeSelect.append(option);
       });
     },
+
+    /**
+     * Clears the options listed in the outcome dropdown select
+     */
     clearOutcomeOptions: function () {
       _outcomeSelect
         .find('option')
