@@ -31,7 +31,6 @@ window.Emcien.Prediction = (function () {
           _setTableValues(data);
         },
         errorCb: function (error) {
-          // TODO: Clear the table
           var fakeData = [
             {
               "category_id": 1,
