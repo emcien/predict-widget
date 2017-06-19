@@ -1,0 +1,14 @@
+{
+  "name": "emcien-prediction-widget",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:rvirani1/emcien-prediction-widget.git",
+  "author": "Riaz N Virani <riaz.n.virani@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "http-server"
+  },
+  "dependencies": {
+    "http-server": "^0.10.0"
+  }
+}
