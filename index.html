@@ -32,9 +32,9 @@
                           id="config-form"
                           onsubmit="Emcien.Prediction.handleConfigFormSubmit(); return false;"
                   >
-                    <input class="form-control" name="instanceHost" type="text" placeholder="App URL" />
-                    <input class="form-control" name="reportId" type="text" placeholder="Rules ID" />
-                    <input class="form-control" name="apiKey" type="text" placeholder="API Auth Token" />
+                    <input class="form-control" name="instanceHost" type="text" placeholder="App URL" required />
+                    <input class="form-control" name="reportId" type="text" placeholder="Rules ID" required />
+                    <input class="form-control" name="apiKey" type="text" placeholder="API Auth Token" required />
                     <button class="btn btn-default" type="submit">Search</button>
                   </form>
                 </div>
