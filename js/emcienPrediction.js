@@ -42,69 +42,9 @@ window.Emcien.Prediction = (function () {
       var apiOptions = $.extend({
         outcomeId: $(select).val(),
         successCb: function (data) {
-          _setTableValues(data);
+          _setTableValues(data.data);
         },
         errorCb: function (error) {
-          var fakeData = [
-            {
-              "category_id": 1,
-              "category_name": "Plasma glucose concentration 2",
-              "category_outcome_impact": 5467.919675888159,
-              "outcome_descriptor": "Yes",
-              "outcome_id": 1,
-              "top_item_drivers": [
-                {
-                  "item_id": 7219908,
-                  "item_name": "Yes",
-                  "impact_size": 122
-                },
-                {
-                  "item_id": 7219909,
-                  "item_name": "No",
-                  "impact_size": 1000
-                }
-              ]
-            },
-            {
-              "category_id": 1,
-              "category_name": "Plasma glucose concentration",
-              "category_outcome_impact": 5467.919675888159,
-              "outcome_descriptor": "Yes",
-              "outcome_id": 1,
-              "top_item_drivers": [
-                {
-                  "item_id": 7219908,
-                  "item_name": "Yes",
-                  "impact_size": 122
-                },
-                {
-                  "item_id": 7219909,
-                  "item_name": "No",
-                  "impact_size": 1000
-                }
-              ]
-            },
-            {
-              "category_id": 1,
-              "category_name": "Plasma glucose concentration",
-              "category_outcome_impact": 5467.919675888159,
-              "outcome_descriptor": "Yes",
-              "outcome_id": 1,
-              "top_item_drivers": [
-                {
-                  "item_id": 7219908,
-                  "item_name": "Yes",
-                  "impact_size": 122
-                },
-                {
-                  "item_id": 7219909,
-                  "item_name": "No",
-                  "impact_size": 1000
-                }
-              ]
-            }
-          ];
-          _setTableValues(fakeData);
           alert('Error:' + error.statusText);
           console.log(error);
         }
