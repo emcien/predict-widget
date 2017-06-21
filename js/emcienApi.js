@@ -13,6 +13,20 @@ window.Emcien.Api = (function () {
   };
 
   /**
+   * Takes a host/url and ensures that it has a protocol prefix
+   * @param {string} instanceHost User provided host/url
+   * @returns {string} URL with guaranteed protocol
+   * @private
+   */
+  var _withUrlProtocol = function(instanceHost) {
+    if (instanceHost.startsWith('http')) {
+      return instanceHost
+    } else {
+      return 'http://' + instanceHost;
+    }
+  };
+
+  /**
    * Generates the API URL for the Report Outcomes endpoint
    * @param instanceHost Emcien Instance Host
    * @param reportId Emcien Report ID
@@ -20,7 +34,7 @@ window.Emcien.Api = (function () {
    * @private
    */
   var _reportOutcomesUrl = function (instanceHost, reportId) {
-    return 'https://' + instanceHost + '/api/v1/reports/' + reportId + '/outcomes'
+    return _withUrlProtocol(instanceHost) + '/api/v1/reports/' + reportId + '/outcomes'
   };
 
   /**
@@ -32,7 +46,7 @@ window.Emcien.Api = (function () {
    * @private
    */
   var _reportOutcomeCategoriesUrl = function(instanceHost, reportId, outcomeId) {
-    return 'https://' + instanceHost + '/api/v1/reports/' + reportId + '/outcomes/' + outcomeId + '/categories'
+    return _withUrlProtocol(instanceHost) + '/api/v1/reports/' + reportId + '/outcomes/' + outcomeId + '/categories'
   };
 
   return {
