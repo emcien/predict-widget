@@ -7,3 +7,12 @@
     display: inline;
     width: 250px;
 }
+
+.data-table-dots {
+    min-width: 70px;
+    color: #b2b2b2;
+}
+
+#data-table td {
+    height:30px;
+}

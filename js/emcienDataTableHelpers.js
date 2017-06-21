@@ -26,13 +26,42 @@ window.Emcien.DataTableHelpers = (function () {
    * @private
    */
   var _categoryOutcomeImpactsHtml = function (impacts) {
+    var maxCategoryOutcomeImpact = Math.max.apply(null, impacts);
     var str = '<tr><td class="text-center active">Impact</td>';
-    $.each(impacts, function (i, name) {
-      str += '<td>' + name + '</td>';
+    $.each(impacts, function (i, impact) {
+      var categoryOutcomeImpactPct = Math.round(impact * 100 / maxCategoryOutcomeImpact);
+      str += _categoryOutcomeImpactHtml(categoryOutcomeImpactPct);
     });
     str += '</tr>';
     return str
+  };
 
+  /**
+   * Generates the markup for fontawesome icons to represent the impact
+   * @param {number} categoryOutcomeImpactPct A number from 0 - 100 of the impact
+   * @returns {string} HTML markup with FontAwesome icons of the circles
+   * @private
+   */
+  var _categoryOutcomeImpactHtml = function(categoryOutcomeImpactPct) {
+    var str = '<td class="data-table-dots">';
+
+    var fullCircles = Math.floor(categoryOutcomeImpactPct / 20);
+    for (var x = 0; x < fullCircles; x++) {
+      str += '<i class="fa fa-circle" aria-hidden="true"></i>'
+    }
+
+    var halfCircle = (categoryOutcomeImpactPct % 20) >= 10;
+    if (halfCircle) {
+      str += '<i class="fa fa-adjust fa-rotate-180" aria-hidden="true"></i>'
+    }
+
+    var emptyCircles = 5 - fullCircles - halfCircle;
+    for (var y = 0; y < emptyCircles; y++) {
+      str += '<i class="fa fa-circle-o" aria-hidden="true"></i>'
+    }
+
+    str += '</td>';
+    return str;
   };
 
   /**
@@ -80,19 +109,56 @@ window.Emcien.DataTableHelpers = (function () {
    * @returns {string} HTML representation of table data
    * @private
    */
+
   var _itemDriverRowsHtml = function (itemDrivers) {
     var str = '';
-    for (var x = 0; x < 5; x++) {
-      str += '<tr><td class="text-center active">' + (x + 1) + '</td>';
-      for (var y = 0; y < itemDrivers.length; y++) {
-        var topDrivers = itemDrivers[y] || [];
-        var topDriver = topDrivers[x] || {};
-        var itemName = topDriver.item_name || '';
-        str += '<td>' + itemName + '</td>';
+    var maxImpacts = _maxImpacts(itemDrivers);
+
+    for (var y = 0; y < 5; y++) {
+      str += '<tr><td class="text-center active">' + (y + 1) + '</td>';
+      for (var x = 0; x < itemDrivers.length; x++) {
+        var topDrivers = itemDrivers[x] || [];
+        var driver = topDrivers[y] || {};
+        var impactRatio = (driver.impact_size / maxImpacts[x]) || 0;
+        str += '<td style="' + _itemDriverRowCss(impactRatio) + '">' + (driver.item_name || '') + '</td>';
       }
       str += '</tr>';
     }
     return str;
+  };
+
+  /**
+   * Takes an array of arrays of item drivers. Figures out the max impact for each and returns them
+   * @param {Array} itemDrivers Item driver data for a particular outcome
+   * @returns {Array} A corresponding array of numbers of the max impact of any item driver
+   * @private
+   */
+  var _maxImpacts = function (itemDrivers) {
+    return $.map(itemDrivers, function(ids) {
+      if (ids.length === 0) {
+        return 0
+      }
+      var impacts = $.map(ids, function(id) { return id.impact_size });
+      return Math.max.apply(null, impacts);
+    });
+  };
+
+  /**
+   * Generates the css markup for an item driver cell. Names the horizontal fill
+   * @param {number} fraction A fraction from 0.0 - 1.0 of how much of the cell should be filled
+   * @returns {string} CSS markup that should be attached to the cell
+   * @private
+   */
+  var _itemDriverRowCss = function (fraction) {
+    var percentage = fraction * 100;
+    var color = '#f1f1f1';
+    return (
+      'background: -webkit-linear-gradient(left, ' + color + ' ' + percentage + '%,#ffffff ' + percentage + '%);' +
+      'background: -moz-linear-gradient(left, ' + color + ' ' + percentage + '%,#ffffff ' + percentage + '%);' +
+      'background: -ms-linear-gradient(left, ' + color + ' ' + percentage + '%,#ffffff ' + percentage + '%);' +
+      'background: -o-linear-gradient(left, ' + color + ' ' + percentage + '%,#ffffff ' + percentage + '%);' +
+      'background: linear-gradient(to right, ' + color + ' ' + percentage + '%,#ffffff ' + percentage + '%);'
+    )
   };
 
   return {
