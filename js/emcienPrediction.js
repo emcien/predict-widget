@@ -25,7 +25,8 @@ window.Emcien.Prediction = (function () {
           Emcien.OutcomeOptionsHelpers.setOutcomeOptions(data.data);
         },
         errorCb: function (error) {
-          alert('Error:' + error);
+          alert('Error:' + error.statusText);
+          console.log(error);
         }
       }, Emcien.ConfigFormHelpers.extractConfigFormVals());
 
