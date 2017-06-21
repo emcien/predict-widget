@@ -22,7 +22,7 @@ window.Emcien.Api = (function () {
     if (instanceHost.startsWith('http')) {
       return instanceHost
     } else {
-      return 'http://' + instanceHost;
+      return 'https://' + instanceHost;
     }
   };
 
