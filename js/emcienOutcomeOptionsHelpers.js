@@ -16,7 +16,7 @@ window.Emcien.OutcomeOptionsHelpers = (function () {
   var _buildOutcomeOption = function (item) {
     return $('<option>', {
       value: item.id,
-      text: item.item_identifier
+      text: item.item_id
     });
   };
 
