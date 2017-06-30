@@ -151,7 +151,7 @@ window.Emcien.DataTableHelpers = (function () {
    */
   var _itemDriverRowCss = function (fraction) {
     var percentage = fraction * 100;
-    var color = '#f1f1f1';
+    var color = '#EDFBF1';
     return (
       'background: -webkit-linear-gradient(left, ' + color + ' ' + percentage + '%,#ffffff ' + percentage + '%);' +
       'background: -moz-linear-gradient(left, ' + color + ' ' + percentage + '%,#ffffff ' + percentage + '%);' +
