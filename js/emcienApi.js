@@ -46,7 +46,7 @@ window.Emcien.Api = (function () {
    * @private
    */
   var _reportOutcomeCategoriesUrl = function(instanceHost, reportId, outcomeId) {
-    return _withUrlProtocol(instanceHost) + '/api/v1/reports/' + reportId + '/outcomes/' + outcomeId + '/categories'
+    return _withUrlProtocol(instanceHost) + '/api/v1/reports/' + reportId + '/outcomes/' + outcomeId + '/categories?sort=-category_outcome_impact'
   };
 
   return {
