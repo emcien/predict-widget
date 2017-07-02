@@ -1,5 +1,5 @@
 window.Emcien = window.Emcien || {};
-window.Emcien.DataTableHelpers = (function () {
+window.Emcien.DataTable = (function () {
   /**
    * jQuery Selector for the data table
    * @type {jQuery}
@@ -42,7 +42,7 @@ window.Emcien.DataTableHelpers = (function () {
    * @returns {string} HTML markup with FontAwesome icons of the circles
    * @private
    */
-  var _categoryOutcomeImpactHtml = function(categoryOutcomeImpactPct) {
+  var _categoryOutcomeImpactHtml = function (categoryOutcomeImpactPct) {
     var str = '<td class="data-table-dots">';
 
     var fullCircles = Math.floor(categoryOutcomeImpactPct / 20);
@@ -62,6 +62,18 @@ window.Emcien.DataTableHelpers = (function () {
 
     str += '</td>';
     return str;
+  };
+
+  /**
+   * Takes API data and renders driver names
+   * @param data API Data
+   */
+  var _renderDriverNames = function (data) {
+    var names = _driverNames(data);
+    var html = _driverNamesHtml(names);
+    _dataTable
+      .find('thead')
+      .append(html);
   };
 
   /**
@@ -104,6 +116,18 @@ window.Emcien.DataTableHelpers = (function () {
   };
 
   /**
+   * Takes API data and renders item driver rows
+   * @param data API Data
+   */
+  var _renderItemDriverRows = function (data) {
+    var itemDrivers = _itemDrivers(data);
+    var html = _itemDriverRowsHtml(itemDrivers);
+    _dataTable
+      .find('tbody')
+      .append(html)
+  };
+
+  /**
    * Takes item driver data and returns HTML data
    * @param {Array} itemDrivers Item driver data from the API
    * @returns {string} HTML representation of table data
@@ -134,11 +158,13 @@ window.Emcien.DataTableHelpers = (function () {
    * @private
    */
   var _maxImpacts = function (itemDrivers) {
-    return $.map(itemDrivers, function(ids) {
+    return $.map(itemDrivers, function (ids) {
       if (ids.length === 0) {
         return 0
       }
-      var impacts = $.map(ids, function(id) { return id.impact_size });
+      var impacts = $.map(ids, function (id) {
+        return id.impact_size
+      });
       return Math.max.apply(null, impacts);
     });
   };
@@ -161,6 +187,18 @@ window.Emcien.DataTableHelpers = (function () {
     )
   };
 
+  /**
+   * Takes API data and renders impact row
+   * @param data API Data
+   */
+  var _renderImpactRow = function (data) {
+    var categoryOutcomeImpacts = _categoryOutcomeImpacts(data);
+    var html = _categoryOutcomeImpactsHtml(categoryOutcomeImpacts);
+    _dataTable
+      .find('tbody')
+      .append(html);
+  };
+
   return {
     /**
      * Clears the data in the table
@@ -171,37 +209,14 @@ window.Emcien.DataTableHelpers = (function () {
         .remove()
     },
     /**
-     * Takes API data and renders driver names
-     * @param data API Data
+     * Renders data into the table
+     * @param {object} data Data returned by the API
+     * @private
      */
-    renderDriverNames: function (data) {
-      var names = _driverNames(data);
-      var html = _driverNamesHtml(names);
-      _dataTable
-        .find('thead')
-        .append(html);
-    },
-    /**
-     * Takes API data and renders impact row
-     * @param data API Data
-     */
-    renderImpactRow: function (data) {
-      var categoryOutcomeImpacts = _categoryOutcomeImpacts(data);
-      var html = _categoryOutcomeImpactsHtml(categoryOutcomeImpacts);
-      _dataTable
-        .find('tbody')
-        .append(html);
-    },
-    /**
-     * Takes API data and renders item driver rows
-     * @param data API Data
-     */
-    renderItemDriverRows: function (data) {
-      var itemDrivers = _itemDrivers(data);
-      var html = _itemDriverRowsHtml(itemDrivers);
-      _dataTable
-        .find('tbody')
-        .append(html)
+    setTableValues: function (data) {
+      _renderDriverNames(data);
+      _renderImpactRow(data);
+      _renderItemDriverRows(data);
     }
   }
 })();

@@ -1,5 +1,5 @@
 window.Emcien = window.Emcien || {};
-window.Emcien.OutcomeOptionsHelpers = (function () {
+window.Emcien.OutcomeOptions = (function () {
   /**
    * jQuery Selector for the Outcomes dropdown
    * @type {jQuery}

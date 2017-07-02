@@ -1,5 +1,5 @@
 window.Emcien = window.Emcien || {};
-window.Emcien.ConfigFormHelpers = (function () {
+window.Emcien.ConfigForm = (function () {
   /**
    * Selector for the config form
    * @type {jQuery}

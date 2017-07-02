@@ -6,7 +6,7 @@
   "author": "Riaz N Virani <riaz.n.virani@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "http-server"
+    "start": "http-server ./src"
   },
   "dependencies": {
     "http-server": "^0.10.0"
