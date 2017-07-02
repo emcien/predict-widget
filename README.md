@@ -44,8 +44,9 @@ src/
 
 ## Solution Design
 
-*Note* All of the JavaScript files in this application use a variation the [module pattern](https://toddmotto.com/mastering-the-module-pattern/).
-*Note* All the JavaScript functions used in this project have [JSDoc](http://usejsdoc.org/) style comments attached to them. 
+*Note*: All of the JavaScript files in this application use a variation the [module pattern](https://toddmotto.com/mastering-the-module-pattern/).
+
+*Note*: All the JavaScript functions used in this project have [JSDoc](http://usejsdoc.org/) style comments attached to them. 
 
 This reference application can really be thought of as being composed of three parts:
 
@@ -59,9 +60,9 @@ This reference application can really be thought of as being composed of three p
 
 * Data Table - Displays the category data
 
-Each of these parts has a corresponding helper file in the `lib` directory that will have the relevant rendering or parsing functions. Note that these files all use the module pattern, so it will be helpful to first go to the bottom of the file to check out their public methods before reading all the private methods, i.e `_privateMethod`.
+Each of these parts has a corresponding helper file in the `src/lib` directory with the relevant rendering or parsing functions. Note that these files all use the module pattern, so it will be helpful to first go to the bottom of the file to check out their public methods before reading all the private methods, i.e `_privateMethod`.
 
-For example, you'll notice that the table in the `index.html` is empty. That's because the data is client rendered and you'd want to look in the `src/js/emcienDataTable.js` to see how.
+For example, you'll notice that the table in the `src/index.html` is empty. To find the functions that handle rendering new data into the data table, you'd want to look in [`src/js/lib/emcienDataTable.js`](src/js/lib/emcienDataTable.js) to see how.
 
 ### User Interactions
 
@@ -70,5 +71,4 @@ There are only two main user interactions that we have to handle:
 * Submitting the Config Form
 * Selecting an Outcome Option
 
-Both of those handlers are defined in the `src/emcienPrediction.js` file as `handleConfigFormSubmit` and `handleOutcomeChange` respectively. Think of these as entry points for the application as they are the only two functions that you'll see called in the `index.html`. Both of these functions then utilize helper functions from the `lib` directory to make API calls, update the DOM, etc. 
-
+Both of those handlers are defined in the [`src/js/emcienPrediction.js`](src/js/emcienPrediction.js) file as `handleConfigFormSubmit` and `handleOutcomeChange` respectively. Think of these as entry points for the application as they are the only two functions that you'll see called in the `index.html`. Both of these functions then utilize helper functions from the `src/lib` directory to make API calls, update the DOM, etc. 
