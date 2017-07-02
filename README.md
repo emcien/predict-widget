@@ -71,4 +71,4 @@ There are only two main user interactions that we have to handle:
 * Submitting the Config Form
 * Selecting an Outcome Option
 
-Both of those handlers are defined in the [`src/js/emcienPrediction.js`](src/js/emcienPrediction.js) file as `handleConfigFormSubmit` and `handleOutcomeChange` respectively. Think of these as entry points for the application as they are the only two functions that you'll see called in the `index.html`. Both of these functions then utilize helper functions from the `src/lib` directory to make API calls, update the DOM, etc. 
+Both of those handlers are defined in the [`src/js/emcienPrediction.js`](src/js/emcienPrediction.js) file as `handleConfigFormSubmit` and `handleOutcomeChange` respectively. Think of these as entry points for the application as they are the only two functions that you'll see called in the `src/index.html`. Both of these functions then utilize helper functions from the `src/lib` directory to make API calls, update the DOM, etc. 
