@@ -21,14 +21,10 @@ This is a reference implementation of a visualization based on the Emcien API.
 * Run `npm start`
 * Open `localhost:8080`
 
-To run in development:
-
-* Start the development server with `npm start`
-
 *Note* The development server does not hot reload, so you'll have to refresh manually.
 
 ## Production Deployment
-Simply upload all of the files in the `src` directory to a web host. It should simply work!
+Simply upload all of the files in the `src` directory to a web host. It should just work!
 
 ## File Structure 
 ```
@@ -48,6 +44,9 @@ src/
 
 ## Solution Design
 
+*Note* All of the JavaScript files in this application use a variation the [module pattern](https://toddmotto.com/mastering-the-module-pattern/).
+*Note* All the JavaScript functions used in this project have [JSDoc](http://usejsdoc.org/) style comments attached to them. 
+
 This reference application can really be thought of as being composed of three parts:
 
 <p align="center">
@@ -56,7 +55,20 @@ This reference application can really be thought of as being composed of three p
 
 * Config Form - Submitting the Config Form queries the Outcomes API (`reports/{report_id}/outcomes`) to retrieve the outcomes for a particular report and populates the Outcome Options dropdown
 
-* Outcome Options - Selecting a specific outcome queries the Outcomes API again (`reports/{report_id/outcomes/{outcome_id}/categories`) to retrieve the categories and populates the Data Table
+* Outcome Options - Selecting a specific outcome queries the Outcomes API (`reports/{report_id/outcomes/{outcome_id}/categories`) to retrieve the categories and populates the Data Table
 
-* Data Table - Displays the category data and impact
+* Data Table - Displays the category data
+
+Each of these parts has a corresponding helper file in the `lib` directory that will have the relevant rendering or parsing functions. Note that these files all use the module pattern, so it will be helpful to first go to the bottom of the file to check out their public methods before reading all the private methods, i.e `_privateMethod`.
+
+For example, you'll notice that the table in the `index.html` is empty. That's because the data is client rendered and you'd want to look in the `src/js/emcienDataTable.js` to see how.
+
+### User Interactions
+
+There are only two main user interactions that we have to handle:
+
+* Submitting the Config Form
+* Selecting an Outcome Option
+
+Both of those handlers are defined in the `src/emcienPrediction.js` file as `handleConfigFormSubmit` and `handleOutcomeChange` respectively. Think of these as entry points for the application as they are the only two functions that you'll see called in the `index.html`. Both of these functions then utilize helper functions from the `lib` directory to make API calls, update the DOM, etc. 
 
