@@ -46,7 +46,7 @@ src/
 
 *Note*: All of the JavaScript files in this application use a variation the [module pattern](https://toddmotto.com/mastering-the-module-pattern/).
 
-*Note*: All the JavaScript functions used in this project have [JSDoc](http://usejsdoc.org/) style comments attached to them. 
+*Note*: All the JavaScript functions used in this project have [JSDoc](http://usejsdoc.org/) style comments for documentation. 
 
 This reference application can really be thought of as being composed of three parts:
 
