@@ -79,6 +79,15 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
     <!-- END Cloud JS Files -->
 
+    <script>
+      $(document).ready(function() {
+        // fill the form from local storage
+        var inputs = $('#config-form').find('input').each(function() {
+          this.value = localStorage.getItem(this.name);
+        });
+      });
+    </script>
+
     <!-- START Custom JS Files -->
     <script src="js/lib/emcienApi.js"></script>
     <script src="js/lib/emcienConfigForm.js"></script>

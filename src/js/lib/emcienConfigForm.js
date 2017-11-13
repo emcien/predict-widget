@@ -16,6 +16,7 @@ window.Emcien.ConfigForm = (function () {
       var inputs = _configForm.find('input');
       var vals = {};
       inputs.each(function () {
+        localStorage.setItem(this.name, this.value);
         vals[this.name] = $(this).val()
       });
       return vals;
