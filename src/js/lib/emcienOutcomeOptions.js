@@ -16,7 +16,7 @@ window.Emcien.OutcomeOptions = (function () {
   var _buildOutcomeOption = function (item) {
     return $('<option>', {
       value: item.id,
-      text: item.category_name + " is " + item.item_id
+      text: item.category_name + " is " + item.identifier
     });
   };
 

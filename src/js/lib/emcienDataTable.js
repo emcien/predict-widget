@@ -15,7 +15,7 @@ window.Emcien.DataTable = (function () {
    */
   var _categoryOutcomeImpacts = function (data) {
     return $.map(data, function (elem) {
-      return elem.category_outcome_impact
+      return elem.outcome_impact
     });
   };
 
@@ -84,7 +84,7 @@ window.Emcien.DataTable = (function () {
    */
   var _driverNames = function (data) {
     return $.map(data, function (elem) {
-      return elem.category_name
+      return elem.name
     });
   };
 
