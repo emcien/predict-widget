@@ -13,10 +13,13 @@ window.Emcien.Prediction = (function () {
           Emcien.OutcomeOptions.setOutcomeOptions(data.data);
         },
         errorCb: function (error) {
-          alert('Error: Unable to properly connect to Patterns server, ' +
-                'please check the Patterns App URL, Rules ID, and ' +
-                'API Auth Token for errors.\n' +
-                'Perhaps you meant HTTP or HTTPS?');
+          if (error.responseText == undefined) {
+            alert('Error: Unable to properly connect to Patterns server, ' +
+                  'please check the Patterns App URL and Rules ID for errors.\n' +
+                  'Perhaps you meant HTTP or HTTPS?');
+          } else {
+            alert(JSON.parse(error.responseText).error)
+          }
           console.log(error);
         }
       }, Emcien.ConfigForm.extractConfigFormVals());
